@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log(`Значение счетчика изменено: ${count}`);
+  }, [count]);
+
+  const increaseCount = () => {
+    setCount(prevCount => prevCount + 1);
+  };
+
+  const decreaseCount = () => {
+    setCount(prevCount => prevCount - 1);
+  };
+
+  return (
+    <div>
+      <h1>Счетчик: {count}</h1>
+      <button onClick={increaseCount}>+</button>
+      <button onClick={decreaseCount}>-</button>
+    </div>
+  );
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Counter />
     </div>
   );
 }
